@@ -1,0 +1,23 @@
+<IfModule mod_rewrite.c>
+    # Enable the rewrite engine
+    RewriteEngine On
+
+    # Set the base URL for rewriting rules
+    RewriteBase /
+
+    # If the requested URL is exactly 'index.html', no rewriting is applied
+    RewriteRule ^index\.html$ - [L]
+
+    # If the requested file does not exist
+    RewriteCond %{REQUEST_FILENAME} !-f
+
+    # If the requested directory does not exist
+    RewriteCond %{REQUEST_FILENAME} !-d
+
+    # If the requested URL is not a symbolic link
+    RewriteCond %{REQUEST_FILENAME} !-l
+
+    # Redirect all other requests to 'index.html'
+    # This allows the client-side routing to handle the request
+    RewriteRule . /index.html [L]
+</IfModule>
